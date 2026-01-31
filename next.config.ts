@@ -3,7 +3,7 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   output: 'export',
   basePath: '/portfello',
-  trailingSlash: true,
+  trailingSlash: false,
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,
