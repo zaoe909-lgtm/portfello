@@ -1,0 +1,161 @@
+{
+  "entities": {
+    "Project": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Project",
+      "type": "object",
+      "description": "Represents a project showcased in the portfolio.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the project." },
+        "title": { "type": "string", "description": "Title of the project." },
+        "description": { "type": "string", "description": "Detailed description of the project." },
+        "imageUrl": { "type": "string", "description": "URL of the project's image.", "format": "uri" },
+        "githubLink": { "type": "string", "description": "Link to the project's GitHub repository.", "format": "uri" },
+        "demoLink": { "type": "string", "description": "Link to the live demo of the project.", "format": "uri" },
+        "technologies": { "type": "array", "description": "List of technologies used in the project.", "items": { "type": "string" } }
+      },
+      "required": ["id", "title", "description", "imageUrl"]
+    },
+    "Skill": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Skill",
+      "type": "object",
+      "description": "Represents a skill of the developer.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the skill." },
+        "name": { "type": "string", "description": "Name of the skill." },
+        "proficiency": { "type": "number", "description": "Proficiency level of the skill (e.g., 1-100).", "format": "integer" }
+      },
+      "required": ["id", "name", "proficiency"]
+    },
+    "Experience": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Experience",
+      "type": "object",
+      "description": "Represents a work experience entry.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the experience entry." },
+        "company": { "type": "string", "description": "Name of the company." },
+        "position": { "type": "string", "description": "Job position held at the company." },
+        "date": { "type": "string", "description": "Date range of the employment (e.g., 2020 - Present)." },
+        "description": { "type": "string", "description": "Description of the responsibilities and achievements." }
+      },
+      "required": ["id", "company", "position", "date", "description"]
+    },
+    "Education": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Education",
+      "type": "object",
+      "description": "Represents an education entry.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the education entry." },
+        "institution": { "type": "string", "description": "Name of the educational institution." },
+        "degree": { "type": "string", "description": "Degree obtained." },
+        "date": { "type": "string", "description": "Date range of study." },
+        "description": { "type": "string", "description": "Description of relevant coursework or achievements." }
+      },
+      "required": ["id", "institution", "degree", "date"]
+    },
+    "BlogPost": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BlogPost",
+      "type": "object",
+      "description": "Represents a blog post.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the blog post." },
+        "slug": { "type": "string", "description": "URL-friendly slug for the blog post." },
+        "title": { "type": "string", "description": "Title of the blog post." },
+        "content": { "type": "string", "description": "Content of the blog post (Markdown format)." },
+        "excerpt": { "type": "string", "description": "A short summary of the blog post." },
+        "imageUrl": { "type": "string", "description": "URL for the blog post's feature image.", "format": "uri" },
+        "imageHint": { "type": "string", "description": "Hint for AI image generation." },
+        "publicationDate": { "type": "string", "description": "Date when the blog post was published.", "format": "date-time" }
+      },
+      "required": ["id", "slug", "title", "content", "publicationDate"]
+    },
+    "ContactFormEntry": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactFormEntry",
+      "type": "object",
+      "description": "Represents a contact form submission.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the contact form entry." },
+        "name": { "type": "string", "description": "Name of the sender." },
+        "email": { "type": "string", "description": "Email address of the sender.", "format": "email" },
+        "message": { "type": "string", "description": "Message content." },
+        "submissionDate": { "type": "string", "description": "Date when the form was submitted.", "format": "date-time" }
+      },
+      "required": ["id", "name", "email", "message", "submissionDate"]
+    },
+    "Certification": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Certification",
+      "type": "object",
+      "description": "Represents a professional certification.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "issuer": { "type": "string" },
+        "date": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      },
+      "required": ["id", "name", "issuer", "date"]
+    },
+    "PersonalInfo": {
+      "title": "Personal Info",
+      "type": "object",
+      "description": "Represents the personal information for the portfolio owner.",
+      "properties": {
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "avatarUrl": { "type": "string", "format": "uri" },
+        "avatarHint": { "type": "string" },
+        "githubUrl": { "type": "string", "format": "uri" },
+        "linkedinUrl": { "type": "string", "format": "uri" },
+        "twitterUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["name", "title", "summary"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/Project" },
+      "description": "Publicly visible projects for the portfolio."
+    },
+    "/skills/{skillId}": {
+      "schema": { "$ref": "#/entities/Skill" },
+      "description": "Publicly visible skills."
+    },
+    "/experience/{experienceId}": {
+      "schema": { "$ref": "#/entities/Experience" },
+      "description": "Publicly visible work experience."
+    },
+    "/education/{educationId}": {
+      "schema": { "$ref": "#/entities/Education" },
+      "description": "Publicly visible education history."
+    },
+    "/blogPosts/{blogPostId}": {
+      "schema": { "$ref": "#/entities/BlogPost" },
+      "description": "Publicly visible blog posts."
+    },
+    "/certifications/{certificationId}": {
+      "schema": { "$ref": "#/entities/Certification" },
+      "description": "Publicly visible certifications."
+    },
+    "/personalInfo/{docId}": {
+      "schema": { "$ref": "#/entities/PersonalInfo" },
+      "description": "Personal info for the portfolio owner. Should only contain one document, e.g., 'main'."
+    },
+    "/contactFormEntries/{contactFormEntryId}": {
+      "schema": { "$ref": "#/entities/ContactFormEntry" },
+      "description": "Stores contact form submission data. Writable by public, readable by admin."
+    }
+  }
+}

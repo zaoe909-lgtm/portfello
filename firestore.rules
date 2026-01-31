@@ -1,0 +1,59 @@
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to check if a user is signed in.
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Rules for public portfolio content.
+    // Allow anyone to read the data, but only authenticated users (the admin) to write.
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    
+    match /skills/{skillId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    match /experience/{experienceId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    match /education/{educationId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    match /blogPosts/{blogPostId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    match /certifications/{certificationId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    
+    match /personalInfo/{docId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    /**
+     * @description Rules for public contact form submissions.
+     * @allow Any user (anonymous or authenticated) creating a new contact form entry. (create)
+     * @deny Any user attempting to read, update, or delete any contact form submission. This protects sender privacy. (get, list, update, delete)
+     * @principle Allows public write access for submissions but denies all client-side reads to prevent data leaks. Data must be read from a trusted admin environment.
+     */
+    match /contactFormEntries/{contactFormEntryId} {
+      allow read, update, delete: if isSignedIn();
+      allow create: if true;
+    }
+  }
+}

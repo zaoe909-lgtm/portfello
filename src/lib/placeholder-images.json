@@ -1,0 +1,58 @@
+{
+  "placeholderImages": [
+    {
+      "id": "project-1",
+      "description": "Abstract image for a project card",
+      "imageUrl": "https://images.unsplash.com/photo-1621691187532-bbeb671757ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXBwJTIwc2NyZWVuc2hvdHxlbnwwfHx8fDE3Njk3OTE5ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "app screenshot"
+    },
+    {
+      "id": "project-2",
+      "description": "Abstract image for a project card",
+      "imageUrl": "https://images.unsplash.com/photo-1601972602237-8c79241e468b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2JpbGUlMjBhcHB8ZW58MHx8fHwxNzY5Nzk0MzI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mobile app"
+    },
+    {
+      "id": "project-3",
+      "description": "Abstract image for a project card",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjB1aXxlbnwwfHx8fDE3Njk3ODQ1MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dashboard ui"
+    },
+    {
+      "id": "project-4",
+      "description": "Abstract image for a project card",
+      "imageUrl": "https://images.unsplash.com/photo-1587440871875-191322ee64b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx1aSUyMGRlc2lnbnxlbnwwfHx8fDE3Njk3MTMxODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ui design"
+    },
+    {
+      "id": "avatar",
+      "description": "Avatar of the developer",
+      "imageUrl": "https://images.unsplash.com/photo-1591461283504-48919ae873f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3J0cmFpdCUyMHBlcnNvbnxlbnwwfHx8fDE3Njk3OTA0MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "portrait person"
+    },
+    {
+      "id": "blog-1",
+      "description": "Abstract image for a blog post",
+      "imageUrl": "https://images.unsplash.com/photo-1652696290920-ee4c836c711e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29kZSUyMHByb2dyYW1taW5nfGVufDB8fHx8MTc2OTgwMjgxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "code programming"
+    },
+    {
+      "id": "blog-2",
+      "description": "Abstract image for a blog post",
+      "imageUrl": "https://images.unsplash.com/photo-1568952433726-3896e3881c65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0ZWNobm9sb2d5JTIwYWJzdHJhY3R8ZW58MHx8fHwxNzY5NzI2MDg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technology abstract"
+    },
+    {
+      "id": "blog-3",
+      "description": "Abstract image for a blog post",
+      "imageUrl": "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2JpbGUlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3Njk4MjE0ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mobile development"
+    },
+    {
+      "id": "blog-4",
+      "description": "Abstract image for a blog post",
+      "imageUrl": "https://images.unsplash.com/photo-1580760654352-bba597b07dff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmbHV0dGVyJTIwZGFydHxlbnwwfHx8fDE3Njk4MjE0ODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "flutter dart"
+    }
+  ]
+}
