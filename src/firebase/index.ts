@@ -13,15 +13,20 @@ export function initializeFirebase() {
     // populate the FirebaseOptions in production. It is critical that we attempt to call initializeApp()
     // without arguments.
     let firebaseApp;
+    // On GitHub Pages or other non-Firebase Hosting platforms, initializeApp() without 
+    // arguments will always fail. We only attempt it if we suspect we are on Firebase.
+    const isFirebaseHosting = typeof window !== 'undefined' &&
+      (window.location.hostname.endsWith('.web.app') ||
+        window.location.hostname.endsWith('.firebaseapp.com'));
+
     try {
-      // Attempt to initialize via Firebase App Hosting environment variables
-      firebaseApp = initializeApp();
-    } catch (e) {
-      // Only warn in production because it's normal to use the firebaseConfig to initialize
-      // during development
-      if (process.env.NODE_ENV === "production") {
-        console.warn('Automatic initialization failed. Falling back to firebase config object.', e);
+      if (isFirebaseHosting) {
+        firebaseApp = initializeApp();
+      } else {
+        throw new Error("Skipping auto-init on non-Firebase hosting");
       }
+    } catch (e) {
+      // Fallback to config object
       firebaseApp = initializeApp(firebaseConfig);
     }
 

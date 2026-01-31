@@ -60,6 +60,7 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 
 // Types for data entities
@@ -234,33 +235,34 @@ const dummyBlogPosts = [
 
 
 export function AdminDashboard() {
+  const router = useRouter();
   const firestore = useFirestore();
-  const { user } = useUser();
+  const { user, isUserLoading } = useUser();
   const { toast } = useToast();
   const [hasSeeded, setHasSeeded] = useState(false);
 
-  const personalInfoRef = useMemoFirebase(() => firestore && doc(firestore, "personalInfo", "main"), [firestore]);
+  const personalInfoRef = useMemoFirebase(() => (firestore && user) ? doc(firestore, "personalInfo", "main") : null, [firestore, user]);
   const { data: personalInfo, isLoading: loadingPersonalInfo } = useDoc(personalInfoRef);
 
-  const projectsCol = useMemoFirebase(() => firestore && collection(firestore, "projects"), [firestore]);
+  const projectsCol = useMemoFirebase(() => (firestore && user) ? collection(firestore, "projects") : null, [firestore, user]);
   const { data: projects, isLoading: loadingProjects } = useCollection(projectsCol);
 
-  const skillsCol = useMemoFirebase(() => firestore && collection(firestore, "skills"), [firestore]);
+  const skillsCol = useMemoFirebase(() => (firestore && user) ? collection(firestore, "skills") : null, [firestore, user]);
   const { data: skills, isLoading: loadingSkills } = useCollection(skillsCol);
 
-  const experienceCol = useMemoFirebase(() => firestore && collection(firestore, "experience"), [firestore]);
+  const experienceCol = useMemoFirebase(() => (firestore && user) ? collection(firestore, "experience") : null, [firestore, user]);
   const { data: experience, isLoading: loadingExperience } = useCollection(experienceCol);
 
-  const educationCol = useMemoFirebase(() => firestore && collection(firestore, "education"), [firestore]);
+  const educationCol = useMemoFirebase(() => (firestore && user) ? collection(firestore, "education") : null, [firestore, user]);
   const { data: education, isLoading: loadingEducation } = useCollection(educationCol);
 
-  const certificationsCol = useMemoFirebase(() => firestore && collection(firestore, "certifications"), [firestore]);
+  const certificationsCol = useMemoFirebase(() => (firestore && user) ? collection(firestore, "certifications") : null, [firestore, user]);
   const { data: certifications, isLoading: loadingCerts } = useCollection(certificationsCol);
 
-  const blogPostsCol = useMemoFirebase(() => firestore && collection(firestore, "blogPosts"), [firestore]);
+  const blogPostsCol = useMemoFirebase(() => (firestore && user) ? collection(firestore, "blogPosts") : null, [firestore, user]);
   const { data: blogPosts, isLoading: loadingBlogPosts } = useCollection(blogPostsCol);
 
-  const messagesCol = useMemoFirebase(() => firestore && collection(firestore, "contactFormEntries"), [firestore]);
+  const messagesCol = useMemoFirebase(() => (firestore && user) ? collection(firestore, "contactFormEntries") : null, [firestore, user]);
   const { data: messages, isLoading: loadingMessages } = useCollection(messagesCol);
 
   const isLoading = loadingPersonalInfo || loadingProjects || loadingSkills || loadingExperience || loadingEducation || loadingCerts || loadingBlogPosts;
@@ -305,10 +307,17 @@ export function AdminDashboard() {
     seedDatabase();
   }, [isLoading, hasSeeded, firestore, seedDatabase]);
 
-  if (!user) {
+  useEffect(() => {
+    if (!isUserLoading && !user) {
+      router.push('/login');
+    }
+  }, [user, isUserLoading, router]);
+
+  if (isUserLoading || !user) {
     return (
-      <div className="flex items-center justify-center h-64">
+      <div className="flex flex-col items-center justify-center h-64 gap-4">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <p className="text-muted-foreground animate-pulse">Checking authentication...</p>
       </div>
     );
   }
