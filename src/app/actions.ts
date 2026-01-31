@@ -1,3 +1,8 @@
 "use server";
 
-// AI Resume Enhancer functionality removed to resolve a build issue.
+export async function enhanceResume(prevState: any, formData: FormData) {
+    return {
+        suggestions: "",
+        error: "AI Resume Enhancer is not available in the static version of this site."
+    };
+}
