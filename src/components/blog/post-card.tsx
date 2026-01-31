@@ -5,7 +5,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
-export function PostCard({ post }) {
+interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  imageUrl?: string;
+  imageHint?: string;
+  publicationDate: string | number | Date;
+  excerpt: string;
+  content: string;
+}
+
+export function PostCard({ post }: { post: BlogPost }) {
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       <CardHeader className="p-0">
@@ -21,8 +32,8 @@ export function PostCard({ post }) {
       </CardHeader>
       <CardContent className="pt-6 flex-grow">
         <Badge variant="secondary" className="mb-2">
-            <Calendar className="h-3 w-3 mr-1.5" />
-            {new Date(post.publicationDate).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' })}
+          <Calendar className="h-3 w-3 mr-1.5" />
+          {new Date(post.publicationDate).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' })}
         </Badge>
         <h3 className="text-xl font-bold font-headline mb-2 leading-tight">
           <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
